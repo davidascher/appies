@@ -1,0 +1,40 @@
+<element name="app-a-button">
+  <template>
+    <!-- <link rel="stylesheet" href="{{ASSET_HOST}}/assets/style/app-button.css"></link> -->
+    <style type="text/css">
+    </style>
+    <div>
+      <button class="button">MY BUTTON</button>
+    </div>
+  </template>
+  <description>
+    Written by me!
+  </description>
+  <script type="text/ceci">
+    Ceci(this, {
+      init: function (params) {
+        var button = this.querySelector('div')
+        var t = this;
+        button.onclick = function (e) {
+          t.broadcast('Click');
+        }
+        this.setAttribute('buttonLabel', 'Yeah!');
+      },
+      editable: {
+        buttonLabel: {
+          type: "text",
+          description: "A text for your label to show up in your app",
+          postset: function(v) {
+            this.setLabel(v);
+          }
+        }
+      },
+      setLabel: function (val) {
+        this.querySelector('button').innerHTML = val;
+      },
+      broadcast: function (e) {
+        this.emit(e)
+      }
+    });
+  </script>
+</element>
